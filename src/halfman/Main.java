@@ -5,8 +5,6 @@ public class Main {
 
             TreeCreator m = new TreeCreator();
             m.get();
-          //  m.minyab();
-            m.Creator();
-
+            m.treeCreator();
            }
 }

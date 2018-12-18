@@ -1,87 +1,91 @@
 package halfman;
 
-
-import javax.management.StringValueExp;
-
 public class TreeCreator extends FileWR {
-    private int[] gereh = new int[2];
-    //test git
-    public Node root;
-    public Node[] adress = new Node[1000];
-    public String[] output = new String[127];
-    private queueMin queueMin = new queueMin();
-    public void fillQueue(){
+    private Node[] elements;
+    public String[] strings = new String[127];
+    private int front;
+    private int barg;
+    private int max;
+    public TreeCreator()
+    {
+        elements = new Node[240];
+        front = -1;
+        barg=0;
+        max=1;
+    }
+    public void fillElements(){
 
         for (int i=0;i<127;i++){
-            if (counter[i] !=0)
-            {
-                Node element = new Node(i,counter[i],null,null,null,null);
-                queueMin.enQueue(element);
+            if (counter[i] !=0) {
+                String s=Integer.toString(i);
+                Node element = new Node(s ,counter[i],counter[i],null,null,null,null);
+                enElement(element);
+                barg++;
             }
         }
     }
-    public void Creator() {
-        fillQueue();
-        Node nodep;
-        while (true ){
-            Node nodeL=queueMin.deQueue();
-            Node nodeR=queueMin.deQueue();
-            if (nodeR == null) {
-                queueMin.enQueue(nodeL);
-                break;
-            }
-            nodep=new Node(nodeL.data+nodeR.data,nodeL.count+nodeR.count,nodeL,nodeR,null,null);
-            nodeL.parent=nodep;
-            nodeR.parent=nodep;
-            nodeL.code="0";
-            nodeR.code="1";
-
-            System.out.println(nodep.left.count+"    "+nodep.right.count);
-            System.out.println(nodep.count);
-            if (nodep.count != 0) {
-                root = nodep;
-               queueMin.enQueue(root);
-            }
-        }
-        for (int i=0;i<127;i++)
+    public void treeCreator() {
+        fillElements();
+        while (elementsReport())
         {
-            if (queueMin.elements[i] != null)
-                if (queueMin.elements[i].count !=0)
-                    show(queueMin.elements[i]);
+            int fr = front + 1;
+            elements[fr] = new Node();
+            elements[fr].left=deQueue();
+            elements[fr].right=deQueue();
+            elements[fr].right.parent= elements[fr];
+            elements[fr].left.parent= elements[fr];
+            elements[fr].right.code="1";
+            elements[fr].left.code="0";
+            elements[fr].count1=elements[fr].left.count1 + elements[fr].right.count1;
+            elements[fr].count=elements[fr].left.count1 + elements[fr].right.count1;
+            elements[fr].data=elements[fr].left.data + elements[fr].right.data;
+            front = fr;
         }
-
-
-
-        //System.out.println(root.count);
-        //show(root);
-/*
-        public void waze () {
-            String st = "";
-            for (int i = 0; i <= 127; i++) {
-                if (adress[i] == null) break;
-                Node t = adress[i];
-                //System.out.println(adress[i]);
-                try {
-                    while (t != null) {
-                        st = st + t.code;
-                        t = t.parent;
-                    }
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
-                int f = Integer.parseInt(adress[i].data);
-                output[f] = st;
-                st = "";
+        for (int i=0;i<barg;i++) {
+            Node T = elements[i];
+            String str="";
+            while (T.parent!=null)
+            {
+                str = str + T.code;
+                T = T.parent;
             }
-        }*/
-    }
-            public void show (Node T) {
-                if (T.left == null && T.right != null)
-                    return;
-                else {
-                    System.out.println(T.count);
-                    show(T.left);
-                    show(T.right);
-                }
+            strings[Integer.parseInt(elements[i].data)]=str;
         }
+   }
+
+    public void enElement(Node element) {
+        elements[++front]=element;
     }
+
+    public boolean elementsReport()
+    {
+        int i=0,k=0;
+        while (elements[i]!= null){
+            if (elements[i].count!=0)
+                k++;
+            i++;
+        }
+        return k!=1;
+    }
+    public Node deQueue() {
+        int i=0,coun=0;
+        while (elements[i]!=null){
+                if (elements[i].count > max) {
+                    max = elements[i].count;
+                }
+                i++;
+        }
+        i=0;
+        while (elements[i] != null){
+            if (elements[i].count > 0) {
+                    if (max >= elements[i].count && elements[i].count != 0) {
+                        max = elements[i].count;
+                        coun = i;
+                    }
+                }
+                i++;
+        }
+        elements[coun].count = 0;
+        return elements[coun];
+    }
+}

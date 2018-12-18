@@ -1,16 +1,19 @@
 package halfman;
+
 import java.io.*;
-public class FileWR {
-    public int[] counter=new int[127];
-    public void get() {
+
+public class FileCreate extends TreeCreator{
+    public void Create() {
         try {
             File file = new File("C:\\Users\\hamed\\Desktop\\text.txt");
+            File finalFile = new File("C:\\Users\\hamed\\Desktop\\finaltext.txt");
             if (file.exists()) {
                 BufferedReader buffer = new BufferedReader(new FileReader(file));
+                BufferedWriter Buffer = new BufferedWriter(new FileWriter(finalFile));
                 int ch;
                 while ((ch = buffer.read()) != 126) {
                     if(ch<126 &&  ch>0) {
-                        counter[ch]++;
+
                     }
                 }
             }else{
@@ -25,6 +28,4 @@ public class FileWR {
             e.printStackTrace();
         }
     }
-    }
-
-    
+}

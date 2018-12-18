@@ -1,16 +1,18 @@
 package halfman;
 
 public class Node {
-    public int  data;
+    public String  data;
     public int count;
+    public int count1;
     public  Node left;
     public  Node right;
     public Node parent;
     public String code;
-    public Node(int data,int count, Node left,Node right,Node parent,String code)
+    public Node(String  data,int count,int count1, Node left,Node right,Node parent,String code)
     {
         this.data=data;
         this.count=count;
+        this.count1=count;
         this.left=left;
         this.right=right;
         this.parent=parent;
@@ -19,9 +21,10 @@ public class Node {
     public Node()
     {
         this.count=0;
+        this.count1=0;
         this.code=null;
         this.parent=null;
-        this.data=0;
+        this.data=null;
         this.right=null;
         this.left=null;
     }
