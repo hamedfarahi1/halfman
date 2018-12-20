@@ -2,25 +2,25 @@ package halfman;
 
 public class TreeCreator extends FileWR {
     private Node[] elements;
-    public String[] strings = new String[127];
+    private Node T;
+    private String[] strings = new String[127];
     private int front;
-    private int barg;
+    private int Barg;
     private int max;
-    public TreeCreator()
-    {
+    public TreeCreator() {
         elements = new Node[240];
         front = -1;
-        barg=0;
+        Barg =0;
         max=1;
     }
-    public void fillElements(){
+    private void fillElements(){
 
         for (int i=0;i<127;i++){
             if (counter[i] !=0) {
                 String s=Integer.toString(i);
                 Node element = new Node(s ,counter[i],counter[i],null,null,null,null);
                 enElement(element);
-                barg++;
+                Barg++;
             }
         }
     }
@@ -30,8 +30,8 @@ public class TreeCreator extends FileWR {
         {
             int fr = front + 1;
             elements[fr] = new Node();
-            elements[fr].left=deQueue();
-            elements[fr].right=deQueue();
+            elements[fr].left=deElements();
+            elements[fr].right=deElements();
             elements[fr].right.parent= elements[fr];
             elements[fr].left.parent= elements[fr];
             elements[fr].right.code="1";
@@ -41,24 +41,28 @@ public class TreeCreator extends FileWR {
             elements[fr].data=elements[fr].left.data + elements[fr].right.data;
             front = fr;
         }
-        for (int i=0;i<barg;i++) {
-            Node T = elements[i];
+        for (int i = 0; i< Barg; i++) {
+            T = elements[i];
             String str="";
             while (T.parent!=null)
             {
-                str = str + T.code;
+                str = T.code + str ;
                 T = T.parent;
             }
             strings[Integer.parseInt(elements[i].data)]=str;
         }
+        FileCreate ob=new FileCreate();
+        ob.setter(strings);
+        FileCreate n = new FileCreate();
+        n.setter(strings);
+        n.Create();
    }
 
-    public void enElement(Node element) {
+    private void enElement(Node element) {
         elements[++front]=element;
     }
 
-    public boolean elementsReport()
-    {
+    private boolean elementsReport() {
         int i=0,k=0;
         while (elements[i]!= null){
             if (elements[i].count!=0)
@@ -67,7 +71,7 @@ public class TreeCreator extends FileWR {
         }
         return k!=1;
     }
-    public Node deQueue() {
+    private Node deElements() {
         int i=0,coun=0;
         while (elements[i]!=null){
                 if (elements[i].count > max) {
@@ -85,7 +89,10 @@ public class TreeCreator extends FileWR {
                 }
                 i++;
         }
+       // assert elements[coun] != null;
         elements[coun].count = 0;
         return elements[coun];
     }
+
+
 }
