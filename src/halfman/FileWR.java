@@ -2,9 +2,9 @@ package halfman;
 import java.io.*;
 public class FileWR {
     public int[] counter=new int[127];
-    public void get() {
+    public void get(String path) {
         try {
-            File file = new File("C:\\Users\\hamed\\Desktop\\text.txt");
+            File file = new File(path);
             if (file.exists()) {
                 BufferedReader buffer = new BufferedReader(new FileReader(file));
                 int ch;

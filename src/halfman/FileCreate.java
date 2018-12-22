@@ -1,47 +1,59 @@
 package halfman;
 import java.io.*;
+import java.math.BigInteger;
 
 public class FileCreate {
-
-    private String[] strs=new String[127];
+    public String[] strs=new String[127];
     public void setter(String[] str){
         this.strs=str;
     }
-    public void Create() {
+    public void Create(String path) {
         try {
-            File file = new File("C:\\Users\\hamed\\Desktop\\text.txt");
+            File file = new File(path);
             File finalFile = new File("C:\\Users\\hamed\\Desktop\\finaltext.hmd");
             if (file.exists()) {
                 BufferedReader buffer = new BufferedReader(new FileReader(file));
                 FileOutputStream File = new FileOutputStream(finalFile);
-                byte[] contentInByte;
+                int ch;
+                String string="";
+                //kole matn ro peymayesh mikone bad jaye har harf kodesho mizare va to string save mikone
+                while ((ch=buffer.read()) != 126) {
+                   if (ch<127 && ch>0){
+                       string+=strs[ch];
+                   }
+                }
+                byte[] Total = new BigInteger(string,2).toByteArray();
+                File.write(Total);
                 for (int m=0;m<127;m++){
                     if (strs[m]!=null) {
                         char M = (char)m;
-                        String string = " ' " + M + " ' " + ": " + strs[m]+"  ";
-                        File.write(string.getBytes());
-
+                        String str = M + strs[m];
+                        File.write(str.getBytes());
                     }
                 }
-                File.write(System.getProperty("line.separator").getBytes());
-                File.write(System.getProperty("line.separator").getBytes());
-                int ch;
-                while ((ch=buffer.read()) != 126) {
-                   if (ch<127 && ch>0){
-                       contentInByte = strs[ch].getBytes();
-                       File.write(contentInByte);
-                   }
-                }
+                File.close();
             }
             else{
                 System.out.println(file.getAbsolutePath()+" not exist");
             }
-
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IOException e) {
             // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    public void ExtractFile(){
+        DeCode decode=new DeCode();
+        try {
+            decode.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            decode.searchAndWrite(strs);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

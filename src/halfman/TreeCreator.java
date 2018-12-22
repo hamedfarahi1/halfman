@@ -3,10 +3,11 @@ package halfman;
 public class TreeCreator extends FileWR {
     private Node[] elements;
     private Node T;
-    private String[] strings = new String[127];
+    public String[] strings = new String[127];
     private int front;
     private int Barg;
     private int max;
+    private FileCreate n = new FileCreate();
     public TreeCreator() {
         elements = new Node[240];
         front = -1;
@@ -51,12 +52,8 @@ public class TreeCreator extends FileWR {
             }
             strings[Integer.parseInt(elements[i].data)]=str;
         }
-        FileCreate ob=new FileCreate();
-        ob.setter(strings);
-        FileCreate n = new FileCreate();
-        n.setter(strings);
-        n.Create();
-   }
+
+    }
 
     private void enElement(Node element) {
         elements[++front]=element;
@@ -92,6 +89,13 @@ public class TreeCreator extends FileWR {
        // assert elements[coun] != null;
         elements[coun].count = 0;
         return elements[coun];
+    }
+    public void CreateFile(String path){
+        n.setter(strings);
+        n.Create(path);
+    }
+    public void Extract(){
+        n.ExtractFile();
     }
 
 
