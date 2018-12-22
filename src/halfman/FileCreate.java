@@ -10,7 +10,7 @@ public class FileCreate {
     public void Create(String path) {
         try {
             File file = new File(path);
-            File finalFile = new File("C:\\Users\\hamed\\Desktop\\finaltext.hmd");
+            File finalFile = new File("C:\\Users\\hamed\\Desktop\\huffmanfiles\\binaryResult.hmd");
             if (file.exists()) {
                 BufferedReader buffer = new BufferedReader(new FileReader(file));
                 FileOutputStream File = new FileOutputStream(finalFile);

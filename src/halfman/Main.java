@@ -8,6 +8,7 @@ public class Main {
         TreeCreator m=new TreeCreator();
         Scanner scanner = new Scanner(System.in);
         String input;
+        String path="";
         System.out.println("Compressing new txt file : (Enter 'n')");
         System.out.println("Show huffman code of characters : (Enter 's')");
         System.out.println("Extract file : (Enter 'e'");
@@ -17,13 +18,13 @@ public class Main {
                 case "n":
                     m=new TreeCreator();
                     System.out.println("Enter path of file :");
-                    input = scanner.nextLine();
-                    m.get(input);
+                    path = scanner.nextLine();
+                    m.get(path);
                     System.out.println("Huffman Tree creating ...");
                     m.treeCreator();
                     System.out.println("Tree is created !");
                     System.out.println("Creating compressed file ...");
-                    m.CreateFile(input);
+                    m.CreateFile(path);
                     System.out.println("Compressed file is created !");
                     break;
                 case "s":
