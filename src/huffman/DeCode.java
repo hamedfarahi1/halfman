@@ -1,4 +1,4 @@
-package halfman;
+package huffman;
 import java.io.*;
 
 

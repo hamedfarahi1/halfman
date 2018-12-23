@@ -1,4 +1,4 @@
-package halfman;
+package huffman;
 
 public class TreeCreator extends FileWR {
     private Node[] elements;

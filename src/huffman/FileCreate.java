@@ -1,4 +1,4 @@
-package halfman;
+package huffman;
 import java.io.*;
 import java.math.BigInteger;
 
@@ -19,8 +19,9 @@ public class FileCreate {
                 int ch;
                 String string="";
                 //kole matn ro peymayesh mikone bad jaye har harf kodesho mizare va to string save mikone
-                while ((ch=buffer.read()) != 126) {
+                while ((ch=buffer.read()) != 36) {
                    if (ch<127 && ch>0){
+                       if (strs[ch]!=null)
                        string+=strs[ch];
                    }
                 }

@@ -1,4 +1,4 @@
-package halfman;
+package huffman;
 import java.io.*;
 public class FileWR {
     public int[] counter=new int[127];
@@ -12,7 +12,7 @@ public class FileWR {
             if (file.exists()) {
                 BufferedReader buffer = new BufferedReader(new FileReader(file));
                 int ch,y=0;
-                while ((ch = buffer.read()) != 126) {
+                while ((ch = buffer.read()) != 36) {
                     if(ch<126 &&  ch>0) {
                         y++;
                         if (y<11){

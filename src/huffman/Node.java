@@ -1,4 +1,4 @@
-package halfman;
+package huffman;
 
 public class Node {
     public String  data;
