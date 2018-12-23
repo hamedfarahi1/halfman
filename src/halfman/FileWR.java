@@ -13,6 +13,7 @@ public class FileWR {
                         counter[ch]++;
                     }
                 }
+                buffer.close();
             }else{
                 System.out.println(file.getAbsolutePath()+" not exist");
             }

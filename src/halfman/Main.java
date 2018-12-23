@@ -1,19 +1,15 @@
 package halfman;
-
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-
         TreeCreator m=new TreeCreator();
         Scanner scanner = new Scanner(System.in);
         String input;
         String path="";
         System.out.println("Compressing new txt file : (Enter 'n')");
         System.out.println("Show huffman code of characters : (Enter 's')");
-        System.out.println("Extract file : (Enter 'e'");
+        System.out.println("Extract file : (Enter 'e')");
         while (!(input = scanner.nextLine()).equals("exit")){
-
             switch (input){
                 case "n":
                     m=new TreeCreator();
@@ -45,8 +41,7 @@ public class Main {
             }
             System.out.println("Compressing new txt file : (Enter 'n')");
             System.out.println("Show huffman code of characters : (Enter 's')");
-            System.out.println("Extract file : (Enter 'e'");
+            System.out.println("Extract file : (Enter 'e')");
         }
-
     }
 }

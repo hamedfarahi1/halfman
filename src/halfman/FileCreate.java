@@ -11,6 +11,8 @@ public class FileCreate {
         try {
             File file = new File(path);
             File finalFile = new File("C:\\Users\\hamed\\Desktop\\huffmanfiles\\binaryResult.hmd");
+            File CodeFile = new File("C:\\Users\\hamed\\Desktop\\huffmanfiles\\codefile.cod");
+            BufferedWriter codefile = new BufferedWriter(new FileWriter(CodeFile));
             if (file.exists()) {
                 BufferedReader buffer = new BufferedReader(new FileReader(file));
                 FileOutputStream File = new FileOutputStream(finalFile);
@@ -27,10 +29,12 @@ public class FileCreate {
                 for (int m=0;m<127;m++){
                     if (strs[m]!=null) {
                         char M = (char)m;
-                        String str = M + strs[m];
-                        File.write(str.getBytes());
+                        String str = strs[m] +"~" + M;
+                        codefile.write(str);
                     }
                 }
+                codefile.write("#");
+                codefile.close();
                 File.close();
             }
             else{

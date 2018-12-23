@@ -54,11 +54,9 @@ public class TreeCreator extends FileWR {
         }
 
     }
-
     private void enElement(Node element) {
         elements[++front]=element;
     }
-
     private boolean elementsReport() {
         int i=0,k=0;
         while (elements[i]!= null){
@@ -97,6 +95,4 @@ public class TreeCreator extends FileWR {
     public void Extract(){
         n.ExtractFile();
     }
-
-
 }
