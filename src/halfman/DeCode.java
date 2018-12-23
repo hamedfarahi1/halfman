@@ -3,7 +3,7 @@ import java.io.*;
 
 
 public class DeCode {
-    public String mod = "";
+    private String mod = "";
     private String[] codes = new String[127];
     public void read() throws IOException {
         File fileStream = new File("C:\\Users\\hamed\\Desktop\\huffmanfiles\\binaryResult.hmd");
@@ -34,7 +34,6 @@ public class DeCode {
         }
     }
     public void ConvertToBinary(byte s) {
-
         for (int i = 0; i < 8; i++) {
             int o = (int) Math.pow(2, (7 - i));
             if ((s & o) == o) {
@@ -42,7 +41,6 @@ public class DeCode {
             } else if ((s & o) == 0) mod = mod + "0";
         }
     }
-
     public void searchAndWrite(String[] strs) throws IOException {
         getCode();
         String Temp = "";
@@ -56,12 +54,13 @@ public class DeCode {
                 Temp="";
             }
         }
+        result = result.substring(9,result.length());
+        result = FileWR.getMast() + result;
         System.out.println("Compressed file is decoded !!");
         File file = new File("C:\\Users\\hAmed\\Desktop\\huffmanfiles\\ExtractedFile.txt");
         FileOutputStream file1 = new FileOutputStream(file);
         file1.write(result.getBytes());
         System.out.println("Extracted file is created !!");
         file1.close();
-
     }
     }

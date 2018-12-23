@@ -3,7 +3,7 @@ package halfman;
 public class TreeCreator extends FileWR {
     private Node[] elements;
     private Node T;
-    public String[] strings = new String[127];
+    public static String[] strings = new String[127];
     private int front;
     private int Barg;
     private int max;

@@ -24,15 +24,7 @@ public class Main {
                     System.out.println("Compressed file is created !");
                     break;
                 case "s":
-                    int k=0;
-                    for (int i=0;i<127;i++){
-                        if (m.strings[i]!=null){
-                            System.out.print("'"+(char)i+"'" +":"+m.strings[i]+"  ");
-                            k++;
-                            if (k%10==0)
-                                System.out.println();
-                        }
-                    }
+                    showCodes();
                     break;
                 case "e":
                     System.out.println("Extracting file ...");
@@ -42,6 +34,17 @@ public class Main {
             System.out.println("Compressing new txt file : (Enter 'n')");
             System.out.println("Show huffman code of characters : (Enter 's')");
             System.out.println("Extract file : (Enter 'e')");
+        }
+    }
+    private static void showCodes() {
+        int k=0;
+        for (int i=0;i<127;i++){
+            if (TreeCreator.strings[i]!=null){
+                System.out.print("'"+(char)i+"'" +":"+TreeCreator.strings[i]+"  ");
+                k++;
+                if (k%10==0)
+                    System.out.println();
+            }
         }
     }
 }
