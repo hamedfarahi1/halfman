@@ -2,8 +2,7 @@ package huffman;
 
 public class TreeCreator extends FileWR {
     private Node[] elements;
-    private Node T;
-    public static String[] strings = new String[127];
+    static String[] strings = new String[127];
     private int front;
     private int Barg;
     private int max;
@@ -25,7 +24,7 @@ public class TreeCreator extends FileWR {
             }
         }
     }
-    public void treeCreator() {
+    void treeCreator() {
         fillElements();
         while (elementsReport())
         {
@@ -43,14 +42,14 @@ public class TreeCreator extends FileWR {
             front = fr;
         }
         for (int i = 0; i< Barg; i++) {
-            T = elements[i];
-            String str="";
-            while (T.parent!=null)
+            Node t = elements[i];
+            StringBuilder str= new StringBuilder();
+            while (t.parent!=null)
             {
-                str = T.code + str ;
-                T = T.parent;
+                str.insert(0, t.code);
+                t = t.parent;
             }
-            strings[Integer.parseInt(elements[i].data)]=str;
+            strings[Integer.parseInt(elements[i].data)]= str.toString();
         }
 
     }
@@ -84,15 +83,15 @@ public class TreeCreator extends FileWR {
                 }
                 i++;
         }
-       // assert elements[coun] != null;
+        assert elements[coun] != null;
         elements[coun].count = 0;
         return elements[coun];
     }
-    public void CreateFile(String path){
+    void CreateFile(String path){
         n.setter(strings);
         n.Create(path);
     }
-    public void Extract(){
+    void Extract(){
         n.ExtractFile();
     }
 }

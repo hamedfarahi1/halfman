@@ -1,12 +1,12 @@
 package huffman;
 import java.io.*;
-public class FileWR {
-    public int[] counter=new int[127];
-    private static String mast="";
-    public static String getMast(){
+class FileWR {
+    int[] counter=new int[127];
+    private static StringBuilder mast=new StringBuilder();
+    static StringBuilder getMast(){
         return mast;
     }
-    public void get(String path) {
+    void get(String path) {
         try {
             File file = new File(path);
             if (file.exists()) {
@@ -16,7 +16,7 @@ public class FileWR {
                     if(ch<126 &&  ch>0) {
                         y++;
                         if (y<11){
-                            mast = mast + (char)ch;
+                            mast.append((char)ch);
                         }
                         counter[ch]++;
                     }
@@ -25,9 +25,6 @@ public class FileWR {
             }else{
                 System.out.println(file.getAbsolutePath()+" not exist");
             }
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -5,7 +5,7 @@ public class Main {
         TreeCreator m=new TreeCreator();
         Scanner scanner = new Scanner(System.in);
         String input;
-        String path="";
+        String path;
         menu();
         while (!(input = scanner.nextLine()).equals("exit")){
             switch (input){

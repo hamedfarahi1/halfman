@@ -2,12 +2,12 @@ package huffman;
 import java.io.*;
 import java.math.BigInteger;
 
-public class FileCreate {
-    public String[] strs=new String[127];
-    public void setter(String[] str){
+class FileCreate {
+    private String[] strs=new String[127];
+    void setter(String[] str){
         this.strs=str;
     }
-    public void Create(String path) {
+    void Create(String path) {
         try {
             File file = new File(path);
             File finalFile = new File("C:\\Users\\hamed\\Desktop\\huffmanfiles\\binaryResult.hmd");
@@ -17,15 +17,15 @@ public class FileCreate {
                 BufferedReader buffer = new BufferedReader(new FileReader(file));
                 FileOutputStream File = new FileOutputStream(finalFile);
                 int ch;
-                String string="";
+                StringBuilder string= new StringBuilder();
                 //kole matn ro peymayesh mikone bad jaye har harf kodesho mizare va to string save mikone
                 while ((ch=buffer.read()) != 36) {
                    if (ch<127 && ch>0){
                        if (strs[ch]!=null)
-                       string+=strs[ch];
+                       string.append(strs[ch]);
                    }
                 }
-                byte[] Total = new BigInteger(string,2).toByteArray();
+                byte[] Total = new BigInteger(string.toString(),2).toByteArray();
                 File.write(Total);
                 for (int m=0;m<127;m++){
                     if (strs[m]!=null) {
@@ -41,15 +41,12 @@ public class FileCreate {
             else{
                 System.out.println(file.getAbsolutePath()+" not exist");
             }
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-    public void ExtractFile(){
+    void ExtractFile(){
         DeCode decode=new DeCode();
         try {
             decode.read();
@@ -57,7 +54,7 @@ public class FileCreate {
             e.printStackTrace();
         }
         try {
-            decode.searchAndWrite(strs);
+            decode.searchAndWrite();
         } catch (IOException e) {
             e.printStackTrace();
         }
