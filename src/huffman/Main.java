@@ -24,6 +24,7 @@ public class Main {
                     System.out.println("             Compressed in: (Enter path)");
                     System.out.println("----------------------------------------------------------");
                     pathForCompress = scanner.nextLine();
+                    menu(8,0);
                     menu(5,0);
                     time = System.currentTimeMillis();
                     m.CreateFile(path);
@@ -97,8 +98,6 @@ public class Main {
                 System.out.println("----------------------------------------------------------");
                 System.out.println("          Tree is created ! ("+time+" ms)");
                 System.out.println("----------------------------------------------------------");
-                System.out.println("             Creating compressed file ...");
-                System.out.println("----------------------------------------------------------");
                 System.out.println();
                 break;
             case 4:
@@ -112,6 +111,7 @@ public class Main {
                     System.out.print(".");
                     Thread.sleep(400);
                 }
+                System.out.println();
                 break;
             case 6:
                 System.out.println("Extracting file ...");
@@ -122,6 +122,12 @@ public class Main {
                 System.out.println("          File is Extracted ("+time+" ms)");
                 System.out.println("----------------------------------------------------------");
                 System.out.println();
+                break;
+            case 8:
+                System.out.println("----------------------------------------------------------");
+                System.out.println("             Creating compressed file ...");
+                System.out.println("----------------------------------------------------------");
+                break;
         }
     }
 }
