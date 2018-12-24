@@ -91,7 +91,7 @@ public class TreeCreator extends FileWR {
         n.setter(strings);
         n.Create(path);
     }
-    void Extract(){
-        n.ExtractFile();
+    void Extract(String path){
+        n.ExtractFile(path);
     }
 }

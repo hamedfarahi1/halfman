@@ -2,7 +2,7 @@
   <artifact type="jar" build-on-make="true" name="halfman:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/halfman_jar</output-path>
     <root id="archive" name="halfman.jar">
-      <element id="module-output" name="halfman" />
+      <element id="module-output" name="huffman" />
     </root>
   </artifact>
 </component>

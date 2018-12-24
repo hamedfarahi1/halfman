@@ -3,8 +3,12 @@ import java.io.*;
 class DeCode {
     private StringBuilder mod = new StringBuilder();
     private String[] codes = new String[127];
+    String path;
+    DeCode(String path){
+        this.path = path;
+    }
     void read() throws IOException {
-        File fileStream = new File("C:\\Users\\hamed\\Desktop\\huffmanfiles\\binaryResult.hmd");
+        File fileStream = new File(Main.pathForCompress+"\\binary.ftm");
         FileInputStream fileInputStream = new FileInputStream(fileStream);
         byte[] bytes = fileInputStream.readAllBytes();
         int i = 1;
@@ -15,7 +19,7 @@ class DeCode {
         fileInputStream.close();
     }
     private void getCode() throws IOException {
-        File file = new File("C:\\Users\\hAmed\\Desktop\\huffmanfiles\\codefile.cod");
+        File file = new File(Main.pathForCompress+"\\codesofcharacter.txt");
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
         StringBuilder Code= new StringBuilder();
         char code;
@@ -56,7 +60,7 @@ class DeCode {
         result = new StringBuilder(result.substring(9));
         result.insert(0, FileWR.getMast());
         System.out.println("Compressed file is decoded !!");
-        File file = new File("C:\\Users\\hAmed\\Desktop\\huffmanfiles\\ExtractedFile.txt");
+        File file = new File(path + "\\ExtractedFile.txt");
         FileOutputStream file1 = new FileOutputStream(file);
         file1.write(result.toString().getBytes());
         System.out.println("Extracted file is created !!");

@@ -10,8 +10,8 @@ class FileCreate {
     void Create(String path) {
         try {
             File file = new File(path);
-            File finalFile = new File("C:\\Users\\hamed\\Desktop\\huffmanfiles\\binaryResult.hmd");
-            File CodeFile = new File("C:\\Users\\hamed\\Desktop\\huffmanfiles\\codefile.cod");
+            File finalFile = new File(Main.pathForCompress+"\\binary.ftm");
+            File CodeFile = new File(Main.pathForCompress+"\\codesofcharacter.txt");
             BufferedWriter codefile = new BufferedWriter(new FileWriter(CodeFile));
             if (file.exists()) {
                 BufferedReader buffer = new BufferedReader(new FileReader(file));
@@ -19,7 +19,7 @@ class FileCreate {
                 int ch;
                 StringBuilder string= new StringBuilder();
                 //kole matn ro peymayesh mikone bad jaye har harf kodesho mizare va to string save mikone
-                while ((ch=buffer.read()) != 36) {
+                while ((ch=buffer.read()) != 126) {
                    if (ch<127 && ch>0){
                        if (strs[ch]!=null)
                        string.append(strs[ch]);
@@ -46,8 +46,8 @@ class FileCreate {
             e.printStackTrace();
         }
     }
-    void ExtractFile(){
-        DeCode decode=new DeCode();
+    void ExtractFile(String path){
+        DeCode decode=new DeCode(path);
         try {
             decode.read();
         } catch (IOException e) {

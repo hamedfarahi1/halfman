@@ -1,6 +1,7 @@
 package huffman;
 import java.util.Scanner;
 public class Main {
+    static String pathForCompress;
     public static void main(String[] args) throws InterruptedException {
         TreeCreator m=new TreeCreator();
         Scanner scanner = new Scanner(System.in);
@@ -19,8 +20,11 @@ public class Main {
                     m.treeCreator();
                     time = System.currentTimeMillis() - time;
                     menu(3,time);
+                    System.out.println("----------------------------------------------------------");
+                    System.out.println("             Compressed in: (Enter path)");
+                    System.out.println("----------------------------------------------------------");
+                    pathForCompress = scanner.nextLine();
                     menu(5,0);
-                    System.out.println();
                     time = System.currentTimeMillis();
                     m.CreateFile(path);
                     time = System.currentTimeMillis() - time;
@@ -30,13 +34,18 @@ public class Main {
                     showCodes();
                     break;
                 case "e":
+                    System.out.println("----------------------------------------------------------");
+                    System.out.println("    Extracted in your path :  (Enter path of folder");
+                    System.out.println("----------------------------------------------------------");
+                    path = scanner.nextLine();
                     menu(6,0);
                     time = System.currentTimeMillis();
-                    m.Extract();
+                    m.Extract(path);
                     time = System.currentTimeMillis() - time;
                     menu(7,time);
                     break;
-                case "show":
+                case "new":
+                    main(args);
 
             }
             menu();
@@ -53,10 +62,12 @@ public class Main {
                     System.out.println();
             }
         }
+        System.out.println();
+        System.out.println();
     }
     private static void menu(){
         System.out.println("----------------------------------------------------------");
-        System.out.println("         Compressing new txt file : (Enter 'n')");
+        System.out.println("               Enter path : (Enter 'n')");
         System.out.println("----------------------------------------------------------");
         System.out.println("      Show huffman code of characters : (Enter 's')");
         System.out.println("----------------------------------------------------------");
@@ -64,6 +75,9 @@ public class Main {
         System.out.println("----------------------------------------------------------");
         System.out.println("                 Exit : (Enter 'exit')");
         System.out.println("----------------------------------------------------------");
+        System.out.println("           Run again for new file (Enter 'new')");
+        System.out.println("----------------------------------------------------------");
+        System.out.println();
     }
     private static void menu(int option,long time) throws InterruptedException {
         switch (option){
@@ -71,11 +85,13 @@ public class Main {
                 System.out.println("----------------------------------------------------------");
                 System.out.println("               Enter path of file :");
                 System.out.println("----------------------------------------------------------");
+                System.out.println();
                 break;
             case 2:
                 System.out.println("----------------------------------------------------------");
                 System.out.println("              Huffman Tree creating ...");
                 System.out.println("----------------------------------------------------------");
+                System.out.println();
                 break;
             case 3:
                 System.out.println("----------------------------------------------------------");
@@ -83,11 +99,13 @@ public class Main {
                 System.out.println("----------------------------------------------------------");
                 System.out.println("             Creating compressed file ...");
                 System.out.println("----------------------------------------------------------");
+                System.out.println();
                 break;
             case 4:
                 System.out.println("----------------------------------------------------------");
                 System.out.println("      Compressed file is created ! ("+time+" ms)");
                 System.out.println("----------------------------------------------------------");
+                System.out.println();
                 break;
             case 5:
                 for (int i=0;i<15;i++){
@@ -97,11 +115,13 @@ public class Main {
                 break;
             case 6:
                 System.out.println("Extracting file ...");
+                System.out.println();
                 break;
             case 7:
                 System.out.println("----------------------------------------------------------");
                 System.out.println("          File is Extracted ("+time+" ms)");
                 System.out.println("----------------------------------------------------------");
+                System.out.println();
         }
     }
 }

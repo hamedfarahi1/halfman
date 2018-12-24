@@ -12,7 +12,7 @@ class FileWR {
             if (file.exists()) {
                 BufferedReader buffer = new BufferedReader(new FileReader(file));
                 int ch,y=0;
-                while ((ch = buffer.read()) != 36) {
+                while ((ch = buffer.read()) != 126) {
                     if(ch<126 &&  ch>0) {
                         y++;
                         if (y<11){
